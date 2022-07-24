@@ -1,9 +1,26 @@
-# squishy
+# squishy 🐻‍❄️
 
 A collection of new (LLVM 15) passes to compile normal-looking code to a callable, jump-to-able blob.
 
 Inspired by SheLLVM, but should address some of the outdated issues with
 that project. Thanks to SheLLVM for the inspiration :)
+
+## Building
+
+`squishy 🐻‍❄️` uses the [meson](https://mesonbuild.com) modern build system. To
+build, first ensure that `meson` and `ninja` are installed, and that you have
+an installation of `llvm-15` which you can get [here](https://apt.llvm.com).
+
+Then, invoke:
+
+```
+meson build
+cd build
+meson compile
+```
+
+to produce the [library](build/src/libsquishy.so).
+
 
 ## Passes
 

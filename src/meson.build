@@ -1,7 +1,5 @@
 sources = [
     'AggressiveInline.cpp',
-    'Check.cpp',
-    'DeduplicateCalls.cpp',
     'InlineGlobals.cpp'
 ]
 
