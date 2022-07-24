@@ -12,7 +12,6 @@
 #include "llvm/Transforms/IPO/AlwaysInliner.h"
 #include "llvm/Transforms/IPO/GlobalDCE.h"
 
-#include <llvm-15/llvm/IR/Function.h>
 #include <queue>
 #include <system_error>
 
