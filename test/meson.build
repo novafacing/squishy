@@ -67,7 +67,7 @@ test(
         '-x',
         'ir',
         '-o',
-        'check',
+        'check.bin',
         'check_opt.ll'
     ],
     priority: 0,
