@@ -5,6 +5,7 @@ description = "LLVM pass wrapper library for creating robust shellcode"
 authors = ["novafacing <rowanbhart@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+include = ["src", "test", "meson.build"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
