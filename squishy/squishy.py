@@ -25,6 +25,9 @@ class Squishy:
     def extract_main(cls, binary: Union[bytes, Path]) -> bytes:
         """
         Extract the main function from a binary
+
+        :param binary: Binary to extract the main function from. Must have
+            a symbol for main to work.
         """
 
         if isinstance(binary, Path):
@@ -74,19 +77,22 @@ class Squishy:
     ) -> bytes:
         """
         Compile a file or string of C code into a callable blob
+
+        :param code: Code to compile. Can be a string or a path to a file
+            containing C code.
+        :param arch: Architecture to compile for.
+        :param vendor: Vendor to compile for.
+        :param os: Operating system to compile for.
+        :param environment: Environment to compile for.
         """
         if isinstance(code, Path):
             code = code.read_text()
 
         clang_helper = ClangHelper()
         unopt_bitcode = clang_helper.emit_bitcode(code, arch, vendor, os, environment)
-        logger.info(f"Compiled to unoptimized bitcode: {unopt_bitcode[:64]}...")
         opt_bitcode = clang_helper.opt_bitcode(
             unopt_bitcode, ["squishy-inline"], [LIBSQUISHY_LIB]
         )
-        logger.info(f"Compiled to optimized bitcode: {opt_bitcode[:64]}...")
         binary = clang_helper.emit_binary(opt_bitcode, arch, vendor, os, environment)
-        logger.info(f"Compiled binary: {binary[:64]}...")
         blob = self.extract_main(binary)
-        logger.info(f"Compiled blob: {blob[:64]}...")
         return blob

@@ -265,7 +265,9 @@ class ClangHelper:
     @classmethod
     def test_command(cls, command: Path) -> None:
         """
-        Test a command
+        Test a command with a --version option that it can run
+
+        :param command: The command to test
         """
         cmd = [str(command.resolve()), "--version"]
         try:
@@ -280,6 +282,9 @@ class ClangHelper:
     ):
         """
         Initialize the helper class
+
+        :param clang: The clang command to use if not the default
+        :param opt: The opt command to use if not the default
         """
 
         if isinstance(clang, str):
@@ -341,6 +346,13 @@ class ClangHelper:
     ) -> bytes:
         """
         Emit bitcode from a source file
+
+        :param source: The source file or string to compile to bitcode
+        :param arch: The architecture to compile for
+        :param vendor: The vendor to compile for
+        :param os: The OS to compile for
+        :param environment: The environment to compile for
+        :param extra_args: Extra arguments to pass to clang
         """
 
         if isinstance(source, Path):
@@ -406,6 +418,12 @@ class ClangHelper:
     ) -> bytes:
         """
         Optimize bitcode using some set of passes
+
+        :param source: The bitcode to optimize, either from a file or raw bytes
+            from `emit_bitcode`
+        :param passes: The passes to run on the bitcode
+        :param libs: The pass libraries to load before running the passes
+        :param extra_args: Extra arguments to pass to opt
         """
 
         if isinstance(source, Path):
@@ -454,6 +472,13 @@ class ClangHelper:
     ) -> bytes:
         """
         Emit bitcode from a source file
+
+        :param source: The source file or raw bitcode to compile to binary
+        :param arch: The architecture to compile for
+        :param vendor: The vendor to compile for
+        :param os: The OS to compile for
+        :param environment: The environment to compile for
+        :param extra_args: Extra arguments to pass to clang
         """
 
         if isinstance(source, Path):
