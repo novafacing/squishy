@@ -1,0 +1,1 @@
+from squishy.log import *
