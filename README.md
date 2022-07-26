@@ -1,9 +1,19 @@
 # squishy 🐻‍❄️
 
-A collection of new (LLVM 15) passes to compile normal-looking code to a callable, jump-to-able blob.
+A collection of new (LLVM 15) passes to compile normal-looking code to a callable, jump-to-able blob. Also includes a python library that provides
+a python interface to produce a blob for any architecture triple.
 
 Inspired by SheLLVM, but should address some of the outdated issues with
 that project. Thanks to SheLLVM for the inspiration :)
+
+## Installing
+
+The easiest way to install `squishy 🐻‍❄️` is from PyPi (sorry about the name, PyPi has weird rules). If an sdist is installed, `meson` must be installed and
+`llvm-15` must be available.
+
+```
+python3 -m pip install pysquishy
+```
 
 ## Building
 
@@ -25,9 +35,4 @@ to produce the [library](build/src/libsquishy.so).
 ## Passes
 
 1. Aggressive Inliner: Recursively applies alwaysinline and inlines function
-  calls.
-2. Deduplicate Calls: Repeated calls to inlined code can be directed to
-   a block in the main function as if it were a function without making
-   a call.
-3. Inline Globals: Global variables need to be inlined wherever they are
-   used (in practice, stack all globals into the main function).
+  calls and global variables into the main function.
