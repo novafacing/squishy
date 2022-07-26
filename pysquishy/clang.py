@@ -11,7 +11,7 @@ from subprocess import CalledProcessError, run
 from tempfile import NamedTemporaryFile
 from typing import List, Optional, Tuple, Union
 
-from squishy.error import CompilationError
+from pysquishy.error import CompilationError
 
 logger = getLogger(__name__)
 

@@ -9,8 +9,8 @@ from logging import getLogger
 
 from lief import parse
 
-from squishy.clang import ClangArch, ClangEnvironment, ClangHelper, ClangOS, ClangVendor
-from squishy.lib.wrapper import LIBSQUISHY_LIB
+from pysquishy.clang import ClangArch, ClangEnvironment, ClangHelper, ClangOS, ClangVendor
+from pysquishy.lib.wrapper import LIBSQUISHY_LIB
 
 
 logger = getLogger(__name__)

@@ -3,7 +3,7 @@ Tests for squishy
 """
 
 from pathlib import Path
-from squishy.squishy import Squishy
+from pysquishy.squishy import Squishy
 
 CHECK_C_FILE = Path(__file__).with_name("check.c")
 
