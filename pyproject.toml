@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pysquishy"
-version = "0.1.2"
+version = "0.1.3"
 description = "LLVM pass wrapper library for creating robust shellcode"
 authors = ["novafacing <rowanbhart@gmail.com>"]
 license = "MIT"
