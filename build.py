@@ -8,7 +8,7 @@ from subprocess import run, CalledProcessError
 SQUISHY_DIR = Path(__file__).parent
 SQUISHY_BUILDDIR = SQUISHY_DIR / "builddir"
 SQUISHY_BUILD_LIB = SQUISHY_BUILDDIR / "src" / "libsquishy.so"
-SQUISHY_LIBDIR = SQUISHY_DIR / "squishy" / "lib"
+SQUISHY_LIBDIR = SQUISHY_DIR / "pysquishy" / "lib"
 SQUISHY_LIB = SQUISHY_LIBDIR / "libsquishy.so"
 
 
