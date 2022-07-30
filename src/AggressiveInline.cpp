@@ -82,6 +82,7 @@ public:
         while (worklist.size() > 1) {
             Function *f = worklist.top();
             errs() << "Checking " << f->getName() << "\n";
+            f->dump();
             shouldBeRemoved.insert(f);
             worklist.pop();
             // Make the function inlinable
@@ -310,7 +311,15 @@ public:
         inlineFunctions();
         inlineGlobalVars();
         removeUndefCalls();
-        verifyModule(module);
+        if (verifyModule(module)) {
+            module.dump();
+            report_fatal_error(
+                createStringError(
+                    std::errc::operation_canceled,
+                    "Module is not valid! Something went terribly wrong.\n"
+                    "Do not use the inline keyword in your input!\n"),
+                false);
+        }
     }
 };
 

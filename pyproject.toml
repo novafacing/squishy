@@ -1,11 +1,14 @@
 [tool.poetry]
 name = "pysquishy"
-version = "0.1.5"
+version = "0.1.6"
 description = "LLVM pass wrapper library for creating robust shellcode"
 authors = ["novafacing <rowanbhart@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-include = ["src", "test", "meson.build", "pysquishy"]
+include = ["src", "include", "test", "meson.build"]
+packages = [
+  { include = "pysquishy/**/*" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"

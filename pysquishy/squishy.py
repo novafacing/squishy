@@ -9,7 +9,13 @@ from logging import getLogger
 
 from lief import parse
 
-from pysquishy.clang import ClangArch, ClangEnvironment, ClangHelper, ClangOS, ClangVendor
+from pysquishy.clang import (
+    ClangArch,
+    ClangEnvironment,
+    ClangHelper,
+    ClangOS,
+    ClangVendor,
+)
 from pysquishy.lib.wrapper import LIBSQUISHY_LIB
 
 
@@ -85,14 +91,20 @@ class Squishy:
         :param os: Operating system to compile for.
         :param environment: Environment to compile for.
         """
+        logger.debug(f"Compile requested for {code}")
+
         if isinstance(code, Path):
             code = code.read_text()
 
         clang_helper = ClangHelper()
         unopt_bitcode = clang_helper.emit_bitcode(code, arch, vendor, os, environment)
+        logger.debug(f"Produced unoptimized bitcode of length {len(unopt_bitcode)}")
         opt_bitcode = clang_helper.opt_bitcode(
             unopt_bitcode, ["squishy-inline"], [LIBSQUISHY_LIB]
         )
+        logger.debug(f"Produced optimized bitcode of length {len(opt_bitcode)}")
         binary = clang_helper.emit_binary(opt_bitcode, arch, vendor, os, environment)
+        logger.debug(f"Produced binary of size {len(binary)}")
         blob = self.extract_main(binary)
+        logger.debug(f"Produced blob of size {len(blob)}")
         return blob

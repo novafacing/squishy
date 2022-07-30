@@ -405,7 +405,10 @@ class ClangHelper:
             for line in e.stderr.decode("utf-8").splitlines():
                 logger.error(line)
 
-            raise CompilationError("Unable to produce bitcode") from e
+            raise CompilationError(f"Unable to produce bitcode from: {source}") from e
+
+        if not bitcode:
+            raise CompilationError(f"Unable to produce bitcode from: {source}")
 
         return bitcode
 
@@ -458,6 +461,9 @@ class ClangHelper:
                 logger.error(line)
 
             raise CompilationError("Unable to optimize bitcode") from e
+
+        if not bitcode:
+            raise CompilationError("Unable to optimize bitcode")
 
         return bitcode
 
