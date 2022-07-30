@@ -16,7 +16,7 @@ from pysquishy.clang import (
     ClangOS,
     ClangVendor,
 )
-from pysquishy.lib.wrapper import LIBSQUISHY_LIB
+from pysquishy.libwrap.wrapper import LIBSQUISHY_LIB
 
 
 logger = getLogger(__name__)

@@ -9,7 +9,7 @@ SQUISHY_DIR = Path(__file__).parent
 SQUISHY_BUILDDIR = SQUISHY_DIR / "builddir"
 SQUISHY_BUILT_SRC = SQUISHY_BUILDDIR / "src"
 SQUISHY_BUILD_LIB = SQUISHY_BUILT_SRC / "libsquishy.so"
-SQUISHY_LIBDIR = SQUISHY_DIR / "pysquishy" / "lib"
+SQUISHY_LIBDIR = SQUISHY_DIR / "pysquishy" / "libwrap"
 SQUISHY_LIB = SQUISHY_LIBDIR / "libsquishy.so"
 
 

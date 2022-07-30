@@ -2,7 +2,7 @@ from pysquishy.squishy import Squishy
 
 code = """#include <unistd.h>
 
-                inline int retone() {
+                int retone() {
                     return 1;
                 }
                 
