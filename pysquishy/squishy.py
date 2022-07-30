@@ -69,7 +69,7 @@ class Squishy:
         )[0]
         main_size = next_sym - main_addr
 
-        blob = binary[main_addr - text_offset : (main_addr - text_offset) + main_size]
+        blob = bytes(elf_binary.get_content_from_virtual_address(main_addr, main_size))
 
         return blob
 
