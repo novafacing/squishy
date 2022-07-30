@@ -36,7 +36,7 @@ def build(_) -> None:
     if not SQUISHY_BUILD_LIB.is_file():
         try:
             run(
-                ["meson", "compile", "--buildtype=debug"],
+                ["meson", "compile"],  # , "--buildtype=debug"],
                 cwd=SQUISHY_BUILDDIR.resolve(),
                 check=True,
                 capture_output=True,
