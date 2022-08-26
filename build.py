@@ -17,6 +17,11 @@ def build(_) -> None:
     """
     Build squishy passes and install a wrapper for it as a Python library
     """
+
+    if SQUISHY_LIB.is_file():
+        print("Squishy library already exists. Removing it and rebuilding.")
+        SQUISHY_LIB.unlink(missing_ok=True)
+
     if not SQUISHY_BUILDDIR.is_dir():
         try:
             run(
@@ -50,6 +55,10 @@ def build(_) -> None:
         raise Exception(f"Squishy library {SQUISHY_BUILD_LIB} not created.")
 
     try:
+        print(
+            f"Copying library from {SQUISHY_BUILD_LIB.resolve()} to "
+            f"{SQUISHY_LIB.resolve()}"
+        )
         copyfile(SQUISHY_BUILD_LIB.resolve(), SQUISHY_LIB.resolve())
     except Exception as e:
         dirlisting = "\n".join(list(map(str, SQUISHY_BUILT_SRC.iterdir())))

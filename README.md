@@ -12,7 +12,7 @@ The easiest way to install `squishy 🐻‍❄️` is from PyPi (sorry about the
 `llvm-15` must be available.
 
 ```
-python3 -m pip install pysquishy
+python3 -m pip install pysquishy>=0.1.16
 ```
 
 ## Building
