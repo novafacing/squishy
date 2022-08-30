@@ -2,7 +2,7 @@
 Build script to install squishy as a python library
 """
 from pathlib import Path
-from shutil import copyfile
+from shutil import copyfile, rmtree
 from subprocess import run, CalledProcessError
 
 SQUISHY_DIR = Path(__file__).parent
@@ -22,34 +22,35 @@ def build(_) -> None:
         print("Squishy library already exists. Removing it and rebuilding.")
         SQUISHY_LIB.unlink(missing_ok=True)
 
-    if not SQUISHY_BUILDDIR.is_dir():
-        try:
-            run(
-                ["meson", "builddir"],
-                cwd=SQUISHY_DIR.resolve(),
-                check=True,
-                capture_output=True,
-            )
-        except CalledProcessError as e:
-            raise Exception(
-                f"Failed to build squishy passes:\nSTDOUT: {e.stdout}\nSTDERR: {e.stderr}"
-            ) from e
+    if SQUISHY_BUILDDIR.is_dir():
+        rmtree(SQUISHY_BUILDDIR)
+
+    try:
+        run(
+            ["meson", "builddir"],
+            cwd=SQUISHY_DIR.resolve(),
+            check=True,
+            capture_output=True,
+        )
+    except CalledProcessError as e:
+        raise Exception(
+            f"Failed to build squishy passes:\nSTDOUT: {e.stdout}\nSTDERR: {e.stderr}"
+        ) from e
 
     if not SQUISHY_BUILDDIR.is_dir():
         raise Exception(f"Build directory {SQUISHY_BUILDDIR} not created.")
 
-    if not SQUISHY_BUILD_LIB.is_file():
-        try:
-            run(
-                ["meson", "compile"],  # , "--buildtype=debug"],
-                cwd=SQUISHY_BUILDDIR.resolve(),
-                check=True,
-                capture_output=True,
-            )
-        except CalledProcessError as e:
-            raise Exception(
-                f"Failed to build squishy passes:\nSTDOUT: {e.stdout}\nSTDERR: {e.stderr}"
-            ) from e
+    try:
+        run(
+            ["meson", "compile"],  # , "--buildtype=debug"],
+            cwd=SQUISHY_BUILDDIR.resolve(),
+            check=True,
+            capture_output=True,
+        )
+    except CalledProcessError as e:
+        raise Exception(
+            f"Failed to build squishy passes:\nSTDOUT: {e.stdout}\nSTDERR: {e.stderr}"
+        ) from e
 
     if not SQUISHY_BUILD_LIB.is_file():
         raise Exception(f"Squishy library {SQUISHY_BUILD_LIB} not created.")

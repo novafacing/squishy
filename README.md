@@ -8,6 +8,13 @@ that project. Thanks to SheLLVM for the inspiration :)
 
 ## Installing
 
+### Dependencies
+
+* LLVM-15: Install with `wget -qO - https://apt.llvm.org/llvm.sh | sudo bash -s 15`
+* Meson 0.63+: Install with `pip install -U meson` and add `~/.local` to your path
+
+To set up LLVM-15 as alternatives you can run [scripts/set-alternatives.sh](scripts/set-alternatives.sh)
+
 The easiest way to install `squishy 🐻‍❄️` is from PyPi (sorry about the name, PyPi has weird rules). If an sdist is installed, `meson` must be installed and
 `llvm-15` must be available.
 

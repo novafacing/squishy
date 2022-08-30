@@ -91,13 +91,16 @@ class Squishy:
         :param os: Operating system to compile for.
         :param environment: Environment to compile for.
         """
-        logger.debug(f"Compile requested for {code}")
 
         if isinstance(code, Path):
             code = code.read_text()
 
+        logger.debug(f"Compile requested for:")
+        for i, line in enumerate(code.splitlines()):
+            logger.debug(f"{i:04}: {line}")
+
         clang_helper = ClangHelper()
-        unopt_bitcode = clang_helper.emit_bitcode(code, arch, vendor, os, environment)
+        unopt_bitcode = clang_helper.emit_bitcode(code, arch, vendor, os, environment, extra_args=["-masm=intel"])
         logger.debug(f"Produced unoptimized bitcode of length {len(unopt_bitcode)}")
         opt_bitcode = clang_helper.opt_bitcode(
             unopt_bitcode, ["squishy-inline"], [LIBSQUISHY_LIB]
