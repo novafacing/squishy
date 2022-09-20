@@ -82,7 +82,7 @@ public:
         while (worklist.size() > 1) {
             Function *f = worklist.top();
             errs() << "Checking " << f->getName() << "\n";
-            f->dump();
+            f->print(errs(), nullptr);
             shouldBeRemoved.insert(f);
             worklist.pop();
             // Make the function inlinable
@@ -312,7 +312,7 @@ public:
         inlineGlobalVars();
         removeUndefCalls();
         if (verifyModule(module)) {
-            module.dump();
+            module.print(errs(), nullptr);
             report_fatal_error(
                 createStringError(
                     std::errc::operation_canceled,
