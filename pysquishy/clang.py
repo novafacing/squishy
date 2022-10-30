@@ -157,6 +157,7 @@ class ClangVendor(str, Enum):
     mesa = "mesa"
     suse = "suse"
     oe = "oe"
+    redhat = "redhat"
     NONE = ""
 
 

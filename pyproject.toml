@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pysquishy"
-version = "0.1.17"
+version = "0.1.20"
 description = "LLVM pass wrapper library for creating robust shellcode"
 authors = ["novafacing <rowanbhart@gmail.com>"]
 license = "MIT"
@@ -72,7 +72,7 @@ overgeneral-exceptions = "Exception"
 
 [tool.black]
 line-length = 88
-target-version = ["py36", "py37", "py38", "py39", "py310"]
+target-version = ["py36", "py37", "py38", "py39", "py310", "py311"]
 exclude = '''
 /(
     \.eggs
