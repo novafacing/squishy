@@ -35,7 +35,7 @@ isort = "^5.10.1"
 script = "build.py"
 
 [build-system]
-requires = ["poetry-core>=1.1.0a6", "setuptools"]
+requires = ["poetry-core>=1.1.0a6", "setuptools", "meson", "ninja"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pylint.messages_control]
